@@ -20,15 +20,23 @@ unittest3:
 
 unittest4: 
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 unittest4.c rngs.c -o unittest4 -lm -g 
+cardtest1:
+        gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 cardtest1.c rngs.c -o cardtest1 -lm -g
+
+cardtest2:
+        gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 cardtest2.c rngs.c -o cardtest2 -lm -g
 
 unittestresults.out: unittest1 unittest2 unittest3 unittest4
-	./unittest1 &> unittestresult.out
-	./unittest2 >> unittestresult.out
-	./unittest3 >> unittestresult.out
-	./unittest4 >> unittestresult.out
-	gcov dominion.c.gcov >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
-	
+        ./unittest1 &> unittestresult.out
+        ./unittest2 >> unittestresult.out
+        ./unittest3 >> unittestresult.out
+        ./unittest4 >> unittestresult.out
+        ./cardtest1 >> unittestresult.out
+        ./cardtest2 >> unittestresult.out
+        gcov dominion.c.gcov >> unittestresult.out
+        cat dominion.c.gcov >> unittestresult.out
+
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
